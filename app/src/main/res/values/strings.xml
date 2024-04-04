@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Weather</string>
+    <string name="search">Search</string>
+    <string name="lowest">Lowest</string>
+    <string name="highest">Highest</string>
+    <string name="feels_like">Feels like</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind_speed">Wind speed</string>
+    <string name="pressure">Pressure</string>
+    <string name="visibility">Visibility</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="today">Today</string>
+    <string name="forecast">Forecast</string>
 </resources>
