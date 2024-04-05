@@ -7,16 +7,21 @@ import android.util.Log;
 import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private TextView largeName;
@@ -32,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView visibilityPower;
     private TextView sunriseTime;
     private TextView sunsetTime;
+
+    private List<WeatherForecast> mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         sunsetTime = findViewById(R.id.sunsetTime);
 
         showInfo();
+
+        mList = new ArrayList<>();
     }
 
     private void showInfo() {
@@ -125,5 +134,42 @@ public class MainActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    class fetchData extends Thread{
+        String data = "";
+        @Override
+        public void run() {
+            try {
+                URL url = new URL("https://api.openweathermap.org/data/2.5/forecast?q=hanoi&units=metric&APPID=ea9122ec794be262145f19f74618ce94");
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String line;
+                while((line= bufferedReader.readLine()) != null ){
+                    data =  data + line;
+                }
+                if(!data.isEmpty()){
+                    JSONObject jsonObject = new JSONObject(data);
+                    JSONArray list = jsonObject.getJSONArray("list");
+                    for(int i=0; i<list.length(); i++){
+                        JSONObject listObject = list.getJSONObject(i);
+                        String dt_txt = listObject.getString("dt_txt");
+                        JSONObject mainObject = listObject.getJSONObject("main");
+                        double temp = mainObject.getDouble("temp");
+
+                        WeatherForecast weatherForecast = new WeatherForecast(dt_txt, temp);
+                        mList.add(weatherForecast);
+                    }
+                }
+
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }
