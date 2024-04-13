@@ -203,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
                     String date = (String) current.get("dt_txt");
                     JSONObject main = current.getJSONObject("main");
                     String temp = String.valueOf(Math.round( main.getDouble("temp")));
+                    //Lấy thời gian theo giờ
                     HourlyInfo currentHour = new HourlyInfo(date.substring(11,13), temp);
                     hourList.add(currentHour);
                 }
@@ -213,6 +214,25 @@ public class MainActivity extends AppCompatActivity {
 
                 //Dự báo thời tiết theo ngày (5 ngày tiếp theo)
                 // TO DO
+//                List<DailyInfo> dayList = new ArrayList<>();
+//
+//                for (int i = 0; i < 40; i += 8) {
+//                    double milestoneTempMin = 0.0;
+//                    double milestoneTempMax = 0.0;
+//                    JSONObject current = listJsonResponse.getJSONObject(i);
+//                    String date = (String) current.get("dt_txt");
+//                    for (int j = 0; j < 8; j++) {
+//                        JSONObject main = current.getJSONObject("main");
+//                        double currentTempMin = main.getDouble("temp_min");
+//                        double currentTempMax = main.getDouble("temp_max");
+//                        milestoneTempMin += currentTempMin;
+//                        milestoneTempMax += currentTempMax;
+//                    }
+//                    String dayTempMin = String.valueOf((int) (milestoneTempMin / 8));
+//                    String dayTempMax= String.valueOf((int) (milestoneTempMax / 8));
+//                    DailyInfo currentDay = new DailyInfo(date.substring(8,10), dayTempMin, dayTempMax);
+//                    dayList.add(currentDay);
+//                }
                 //Hết phần dự báo thời tiết theo ngày
 
                 runOnUiThread(() -> {
