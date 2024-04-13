@@ -98,8 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
         buttonSearch.setOnClickListener(v -> {
             String nextCity = editTextSearch.getText().toString();
-            showAll(nextCity);
-            city = "q=" + nextCity;
+            showAll("q=" + nextCity);
         });
 
         showAll(city);
