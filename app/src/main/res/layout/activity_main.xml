@@ -23,48 +23,60 @@
 				android:layout_height="wrap_content"
 				android:background="@drawable/lr270ff41c9e2ff008dda"
 				android:orientation="vertical">
+
 				<LinearLayout
 					android:id="@+id/r5jgq1mkirx2"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:background="#26D9D9D9"
-					android:layout_marginBottom="15dp"
-					android:orientation="vertical">
-				</LinearLayout>
-				<TextView
-					android:id="@+id/re826x8mtna6"
-					android:textColor="#FFFFFF"
-					android:textSize="24sp"
-					android:layout_marginBottom="24dp"
-					android:layout_marginHorizontal="16dp"
-					android:layout_height="wrap_content"
 					android:layout_width="wrap_content"
-					android:text="search"
-				/>
+					android:layout_height="match_parent"
+					android:layout_marginBottom="15dp"
+					android:background="#26D9D9D9"
+					android:orientation="horizontal">
+
+					<Button
+						android:id="@+id/buttonSearch"
+						android:layout_width="117dp"
+						android:layout_height="wrap_content"
+						android:text="Search" />
+
+					<EditText
+						android:id="@+id/searchBox"
+						android:layout_width="285dp"
+						android:layout_height="wrap_content"
+						android:clickable="true"
+						android:ems="10"
+						android:focusableInTouchMode="true"
+						android:hint="Enter City"
+						android:inputType="text"
+						android:selectAllOnFocus="true"
+						android:textColor="#FFFFFF" />
+
+				</LinearLayout>
+
+
 				<TextView
 					android:id="@+id/largeName"
-					android:textColor="#FFFFFF"
-					android:textSize="32sp"
-					android:layout_marginBottom="6dp"
-					android:layout_marginHorizontal="132dp"
+					android:layout_width="240dp"
 					android:layout_height="wrap_content"
-					android:layout_width="wrap_content"
+					android:layout_marginHorizontal="16dp"
+					android:layout_marginBottom="6dp"
 					android:text="Ha Noi"
-				/>
+					android:textColor="#FFFFFF"
+					android:textSize="32sp" />
+
 				<TextView
 					android:id="@+id/largeDate"
-					android:textColor="#FFFFFF"
-					android:textSize="16sp"
-					android:layout_marginBottom="36dp"
-					android:layout_marginHorizontal="99dp"
-					android:layout_height="wrap_content"
 					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="16dp"
+					android:layout_marginBottom="36dp"
 					android:text="Thứ Sáu, 15/03/2024"
-				/>
+					android:textColor="#FFFFFF"
+					android:textSize="16sp" />
+
 				<TextView
 					android:id="@+id/largeTemp"
 					android:textColor="#FFFFFF"
-					android:textSize="86sp"
+					android:textSize="80sp"
 					android:layout_marginBottom="31dp"
 					android:layout_marginHorizontal="89dp"
 					android:layout_height="wrap_content"
@@ -89,7 +101,7 @@
 						<TextView
 							android:id="@+id/lowestTemp"
 							android:textColor="#FFFFFF"
-							android:textSize="24sp"
+							android:textSize="20sp"
 							android:layout_marginBottom="3dp"
 							android:layout_marginHorizontal="10dp"
 							android:layout_height="wrap_content"
@@ -99,7 +111,7 @@
 						<TextView
 							android:id="@+id/lowestText"
 							android:textColor="#FFFFFF"
-							android:textSize="16sp"
+							android:textSize="14sp"
 							android:layout_height="wrap_content"
 							android:layout_width="wrap_content"
 							android:text="Thấp nhất"
@@ -130,7 +142,7 @@
 						<TextView
 							android:id="@+id/highestTemp"
 							android:textColor="#FFFFFF"
-							android:textSize="24sp"
+							android:textSize="20sp"
 							android:layout_marginBottom="3dp"
 							android:layout_marginHorizontal="4dp"
 							android:layout_height="wrap_content"
@@ -140,13 +152,30 @@
 						<TextView
 							android:id="@+id/HighestText"
 							android:textColor="#FFFFFF"
-							android:textSize="16sp"
+							android:textSize="14sp"
 							android:layout_height="wrap_content"
 							android:layout_width="wrap_content"
 							android:text="Cao nhất"
 						/>
 					</LinearLayout>
+
 				</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:orientation="horizontal">
+
+
+				</LinearLayout>
+
+				<ListView
+					android:id="@+id/listView"
+					android:layout_width="match_parent"
+					android:layout_height="400dp"
+					android:layout_weight="1"
+					android:padding="3dp"
+					android:divider="@drawable/cr8b26d9d9d9" />
 				<LinearLayout
 					android:id="@+id/box"
 					android:layout_width="match_parent"
@@ -423,7 +452,7 @@
 						<TextView
 							android:id="@+id/visibilityPower"
 							android:textColor="#FFFFFF"
-							android:textSize="48sp"
+							android:textSize="40sp"
 							android:layout_marginBottom="18dp"
 							android:layout_height="wrap_content"
 							android:layout_width="wrap_content"
@@ -480,7 +509,7 @@
 						<TextView
 							android:id="@+id/sunriseTime"
 							android:textColor="#FFFFFF"
-							android:textSize="48sp"
+							android:textSize="40sp"
 							android:layout_height="wrap_content"
 							android:layout_width="wrap_content"
 							android:text="06:03"
@@ -526,80 +555,15 @@
 					<TextView
 						android:id="@+id/sunsetTime"
 						android:textColor="#FFFFFF"
-						android:textSize="48sp"
+						android:textSize="40sp"
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
 						android:text="18:05"
 					/>
 				</LinearLayout>
-				<LinearLayout
-					android:id="@+id/bottomDrawer"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:gravity="center_vertical"
-					android:background="#FFFFFFFF"
-					android:paddingVertical="12dp"
-					android:paddingHorizontal="30dp"
-					android:orientation="horizontal">
-					<LinearLayout
-						android:id="@+id/rq7l0hnjfs2"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_weight="1"
-						android:layout_marginEnd="4dp"
-						android:orientation="vertical">
-						<LinearLayout
-							android:id="@+id/rlbf95b7lt6"
-							android:layout_width="match_parent"
-							android:layout_height="wrap_content"
-							android:background="@drawable/cr100b4041c9e2"
-							android:paddingHorizontal="56dp"
-							android:layout_marginBottom="6dp"
-							android:orientation="vertical">
-							<ImageView
-								android:id="@+id/r6okz0ezgdnv"
-								android:layout_width="match_parent"
-								android:layout_height="12dp"
-								android:layout_marginTop="10dp"
-								android:src="@mipmap/ic_launcher"
-								android:scaleType="fitXY"
-							/>
-						</LinearLayout>
-						<TextView
-							android:id="@+id/r08yupnp80iy"
-							android:textColor="#1D1B20"
-							android:textSize="12sp"
-							android:layout_marginHorizontal="41dp"
-							android:layout_height="wrap_content"
-							android:layout_width="wrap_content"
-							android:text="Hôm nay"
-						/>
-					</LinearLayout>
-					<LinearLayout
-						android:id="@+id/r30jcce0lzti"
-						android:layout_width="36dp"
-						android:layout_height="wrap_content"
-						android:orientation="vertical">
-						<ImageView
-							android:id="@+id/r8rk8qxqo5cu"
-							android:layout_width="match_parent"
-							android:layout_height="12dp"
-							android:layout_marginBottom="8dp"
-							android:layout_marginHorizontal="11dp"
-							android:src="@mipmap/ic_launcher"
-							android:scaleType="fitXY"
-						/>
-						<TextView
-							android:id="@+id/rh14cd78hxlg"
-							android:textColor="#1D1B20"
-							android:textSize="12sp"
-							android:layout_height="wrap_content"
-							android:layout_width="wrap_content"
-							android:text="Dự báo"
-						/>
-					</LinearLayout>
-				</LinearLayout>
 			</LinearLayout>
 		</LinearLayout>
 	</ScrollView>
+
+
 </LinearLayout>

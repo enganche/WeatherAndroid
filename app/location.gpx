@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ns2:gpx xmlns:ns2="http://www.topografix.com/GPX/1/1">
+   <ns2:metadata/>
+   <ns2:trk>
+       <ns2:trkseg>
+           <ns2:trkpt lat="52.248994" lon="5.134581">
+               <ns2:ele>43.0</ns2:ele>
+               <ns2:time>2015-04-05T12:40:42Z</ns2:time>
+           </ns2:trkpt>
+           <ns2:trkpt lat="52.249052" lon="5.136367">
+               <ns2:ele>41.0</ns2:ele>
+               <ns2:time>2015-04-05T12:41:16Z</ns2:time>
+           </ns2:trkpt>
+           <ns2:trkpt lat="52.249031" lon="5.138273">
+               <ns2:ele>42.0</ns2:ele>
+               <ns2:time>2015-04-05T12:42:54Z</ns2:time>
+           </ns2:trkpt>
+           <ns2:trkpt lat="52.249885" lon="5.140049">
+               <ns2:ele>43.0</ns2:ele>
+               <ns2:time>2015-04-05T12:43:22Z</ns2:time>
+           </ns2:trkpt>
+           <ns2:trkpt lat="52.251959" lon="5.140057">
+               <ns2:ele>42.0</ns2:ele>
+               <ns2:time>2015-04-05T12:44:43Z</ns2:time>
+           </ns2:trkpt>
+           <ns2:trkpt lat="52.252464" lon="5.140098">
+               <ns2:ele>45.0</ns2:ele>
+               <ns2:time>2015-04-05T12:45:32Z</ns2:time>
+           </ns2:trkpt>
+           <ns2:trkpt lat="52.25268" lon="5.141961">
+               <ns2:ele>38.0</ns2:ele>
+               <ns2:time>2015-04-05T12:46:21Z</ns2:time>
+           </ns2:trkpt>
+       </ns2:trkseg>
+   </ns2:trk>
+</ns2:gpx>
