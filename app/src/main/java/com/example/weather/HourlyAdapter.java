@@ -38,9 +38,11 @@ public class HourlyAdapter extends BaseAdapter {
 
         TextView time = (TextView)view.findViewById(R.id.time);
         TextView temp = (TextView)view.findViewById(R.id.temp);
+        TextView des = (TextView)view.findViewById(R.id.description) ;
         Log.d("are you okay?", items.get(position).time);
         time.setText(items.get(position).time);
         temp.setText(items.get(position).temp);
+        des.setText(items.get(position).des);
         return view;
     }
 }

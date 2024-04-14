@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -50,11 +52,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView windPower;
     private TextView pressurePower;
     private TextView visibilityPower;
-    private TextView sunriseTime;
-    private TextView sunsetTime;
 
     HourlyAdapter hourlyAdapter;
-    ListView listView;
+    ListView listViewHourly;
+
+    DailyAdapter dailyAdapter;
+    ListView listViewDaily;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +93,6 @@ public class MainActivity extends AppCompatActivity {
         windPower = findViewById(R.id.windPower);
         pressurePower = findViewById(R.id.pressurePower);
         visibilityPower = findViewById(R.id.visibilityPower);
-        sunriseTime = findViewById(R.id.sunriseTime);
-        sunsetTime = findViewById(R.id.sunsetTime);
 
         final EditText editTextSearch = findViewById(R.id.searchBox);
         Button buttonSearch = findViewById(R.id.buttonSearch);
@@ -157,15 +158,26 @@ public class MainActivity extends AppCompatActivity {
                     largeTemp.setText((int)Math.round(temp) + "°C");
                     largeDate.setText(currentDate);
 
-                    lowestTemp.setText((int)Math.round(tempMin) + "°C");
-                    highestTemp.setText((int)Math.round(tempMax) + "°C");
+                    lowestTemp.setText((int)Math.ceil(tempMin) + "°C");
+                    highestTemp.setText((int)Math.floor(tempMax) + "°C");
                     mediumWeatherText.setText(mainWeather);
                     feelTemp.setText(String.valueOf(feelLike));
 //                    pressurePower.setText((int)Math.round(pressure));
 //                    humidityTemp.setText((int)Math.round(humidity));
 //                    visibilityPower.setText(visibility);
                     windPower.setText(String.valueOf(windSpeed));
+                    processIcon(mainWeather);
 
+                    LinearLayout background = findViewById(R.id.background);
+                    if (temp >= 30) {
+                        background.setBackgroundResource(R.drawable.hot_weather);
+                    }
+                    else if (temp <= 10) {
+                        background.setBackgroundResource(R.drawable.cold_weather);
+                    }
+                    else {
+                        background.setBackgroundResource(R.drawable.nice_weather);
+                    }
                 });
                 urlConnection.disconnect();
             } catch (Exception e) {
@@ -202,45 +214,61 @@ public class MainActivity extends AppCompatActivity {
                     String date = (String) current.get("dt_txt");
                     JSONObject main = current.getJSONObject("main");
                     String temp = String.valueOf(Math.round( main.getDouble("temp")));
+
+                    JSONObject currentWeather = current.getJSONArray("weather").getJSONObject(0);
+                    String des = (String) currentWeather.get("main");
                     //Lấy thời gian theo giờ
-                    HourlyInfo currentHour = new HourlyInfo(date.substring(11,13), temp);
+                    HourlyInfo currentHour = new HourlyInfo(date.substring(11,13), temp, des);
                     hourList.add(currentHour);
                 }
 
                 hourlyAdapter = new HourlyAdapter(hourList);
-                listView = findViewById(R.id.listView);
+                listViewHourly = findViewById(R.id.listViewHourly);
                 //Hết phần dự báo thời tiết theo giờ
 
                 //Dự báo thời tiết theo ngày (5 ngày tiếp theo)
                 // TO DO
-//                List<DailyInfo> dayList = new ArrayList<>();
-//
-//                for (int i = 0; i < 40; i += 8) {
-//                    double milestoneTempMin = 0.0;
-//                    double milestoneTempMax = 0.0;
-//                    JSONObject current = listJsonResponse.getJSONObject(i);
-//                    String date = (String) current.get("dt_txt");
-//                    for (int j = 0; j < 8; j++) {
-//                        JSONObject main = current.getJSONObject("main");
-//                        double currentTempMin = main.getDouble("temp_min");
-//                        double currentTempMax = main.getDouble("temp_max");
-//                        milestoneTempMin += currentTempMin;
-//                        milestoneTempMax += currentTempMax;
-//                    }
-//                    String dayTempMin = String.valueOf((int) (milestoneTempMin / 8));
-//                    String dayTempMax= String.valueOf((int) (milestoneTempMax / 8));
-//                    DailyInfo currentDay = new DailyInfo(date.substring(8,10), dayTempMin, dayTempMax);
-//                    dayList.add(currentDay);
-//                }
+                List<DailyInfo> dayList = new ArrayList<>();
+
+                for (int i = 0; i < 40; i += 8) {
+                    double milestoneTempMin = 0.0;
+                    double milestoneTempMax = 0.0;
+                    JSONObject current = listJsonResponse.getJSONObject(i);
+                    String date = (String) current.get("dt_txt");
+                    String prettierDate = date.substring(8,10) + "/" + date.substring(5,7);
+                    for (int j = 0; j < 8; j++) {
+                        JSONObject main = current.getJSONObject("main");
+                        double currentTempMin = main.getDouble("temp_min");
+                        double currentTempMax = main.getDouble("temp_max");
+                        milestoneTempMin += currentTempMin;
+                        milestoneTempMax += currentTempMax;
+                    }
+                    String dayTempMin = String.valueOf(Math.round(milestoneTempMin / 8));
+                    String dayTempMax= String.valueOf(Math.round(milestoneTempMax / 8));
+                    DailyInfo currentDay = new DailyInfo(prettierDate, dayTempMin, dayTempMax);
+                    dayList.add(currentDay);
+                }
+
+                dailyAdapter = new DailyAdapter(dayList);
+                listViewDaily = findViewById(R.id.listViewDaily);
                 //Hết phần dự báo thời tiết theo ngày
 
                 runOnUiThread(() -> {
 //                    Log.d("debug", baseJsonResponse.toString());
 //                    Log.d("list", listJsonResponse.toString());
-                    for (int i = 0; i < 8; i++) {
-                        Log.d("date", hourList.get(i).toString());
+                    for (int i = 0; i < 5; i++) {
+                        Log.d("date", dayList.get(i).toString());
                     }
-                    listView.setAdapter(hourlyAdapter);
+                    listViewHourly.setAdapter(hourlyAdapter);
+                    listViewDaily.setAdapter(dailyAdapter);
+
+
+                    int nextHour = Integer.parseInt(hourList.get(0).time.substring(0,2));
+                    if (nightCheck(nextHour)) {
+                        LinearLayout background = findViewById(R.id.background);
+                        background.setBackgroundResource(R.drawable.night_weather);
+                        Log.d("midnight", String.valueOf(nextHour));
+                    }
                 });
                 urlConnection.disconnect();
             } catch (Exception e) {
@@ -255,5 +283,16 @@ public class MainActivity extends AppCompatActivity {
         DateFormat dateFormat = new SimpleDateFormat("E, MMM dd yyyy");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    private boolean nightCheck(int time) {
+        return time < 6 && time > 20;
+    }
+
+    private void processIcon(String des) {
+        if (des == "Rain") {
+            ImageView mediumWeatherIcon = findViewById(R.id.mediumWeatherIcon);
+            mediumWeatherIcon.setImageResource(R.drawable.cloud_rain);
+        }
     }
 }

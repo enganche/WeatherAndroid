@@ -6,7 +6,7 @@ public class DailyInfo {
     String tempMin;
 
     public DailyInfo(String time, String tempMax, String tempMin) {
-        this.time = time + "h";
+        this.time = time;
         this.tempMax = tempMax + "°C";
         this.tempMin = tempMin + "°C";
     }

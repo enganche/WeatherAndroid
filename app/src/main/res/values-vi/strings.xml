@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Thời tiết</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="lowest">Thấp nhất</string>
+    <string name="highest">Cao nhất</string>
+    <string name="feels_like">Cảm giác như</string>
+    <string name="humidity">Độ ẩm</string>
+    <string name="wind_speed">Gió</string>
+    <string name="pressure">Áp suất</string>
+    <string name="visibility">Tầm nhìn</string>
+    <string name="daily_forecast">Dự báo 5 ngày tới</string>
+    <string name="hourly_forecast">Dự báo 24h tới</string>
+    <string name="rain">Mưa</string>
+    <string name="clear">Trời quang</string>
+    <string name="clouds">Nhiều mây</string>
+    <string name="city_search">Nhập tên thành phố</string>
+</resources>

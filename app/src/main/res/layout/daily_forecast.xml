@@ -8,17 +8,17 @@
     <LinearLayout
         android:id="@+id/dailyView"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
         tools:ignore="MissingConstraints">
         <LinearLayout
-            android:background="@drawable/cr8b26d9d9d9"
+            android:background="@drawable/small_bg"
             android:paddingVertical="7dp"
             android:paddingHorizontal="12dp"
             android:layout_marginBottom="6dp"
             android:layout_marginEnd="8dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="36dp">
+            android:layout_height="42dp">
             <TextView
                 android:id="@+id/time"
                 android:textColor="#FFFFFF"
@@ -41,7 +41,7 @@
                 android:id="@+id/tempMax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="80dp"
+                android:paddingLeft="32dp"
                 android:text="19°C"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
